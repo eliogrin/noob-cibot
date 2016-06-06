@@ -1,5 +1,6 @@
 package com.github.eliogrin.controllers.rest;
 
+import com.github.eliogrin.controllers.core.ApiController;
 import com.github.eliogrin.dto.EventDto;
 import com.github.eliogrin.models.EventsModel;
 import com.github.eliogrin.models.core.ModelFactory;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rest")
-public class SkypeRestController {
+public class SkypeRestController extends ApiController {
 
     @Autowired
     ModelFactory factory;
