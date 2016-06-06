@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController extends WebController {
 
     @Autowired
-    ModelFactory factory;
+    private ModelFactory factory;
 
     @RequestMapping("/")
     public String getIndex(ModelMap model) {
