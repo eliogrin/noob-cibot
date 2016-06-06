@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <data>ci-bus</data>
+    <name>ci-bus</name>
     <artifactId>cibus</artifactId>
     <packaging>war</packaging>
 

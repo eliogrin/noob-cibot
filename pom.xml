@@ -11,7 +11,7 @@
         <module>ci-bot</module>
     </modules>
     <artifactId>noob-cibot</artifactId>
-    <data>noob-cibot</data>
+    <name>noob-cibot</name>
     <packaging>pom</packaging>
 
     <properties>

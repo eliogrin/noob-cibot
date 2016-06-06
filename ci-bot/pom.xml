@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>cibot</artifactId>
-    <data>ci-bot</data>
+    <name>ci-bot</name>
     <packaging>war</packaging>
 
 </project>
