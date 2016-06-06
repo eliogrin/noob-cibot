@@ -1,0 +1,27 @@
+.header {
+    font-family: Arial;
+    font-size: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    width: 100%;
+}
+
+a:link, a:visited, a:hover {
+    color: #1866c5;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.userData {
+    display: inline-block;
+    float: right;
+}
+
+.header_menu {
+    display: inline-block;
+    vertical-align: middle;
+    alignment-baseline: center;
+}

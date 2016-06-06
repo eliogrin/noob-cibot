@@ -9,8 +9,21 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>ci-bus</name>
+    <data>ci-bus</data>
     <artifactId>cibus</artifactId>
     <packaging>war</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.36</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sql2o</groupId>
+            <artifactId>sql2o</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+    </dependencies>
 
 </project>

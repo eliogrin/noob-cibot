@@ -1,5 +1,6 @@
 package com.github.eliogrin;
 
+import com.github.eliogrin.dto.UserDto;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,11 +22,6 @@ public class UserData implements UserDetails {
 
     private String username;
     private String password;
-
-    public UserData() {
-        username = "test";
-        password = "test";
-    }
 
     public boolean isEnabled() {
         return true;
@@ -52,15 +48,12 @@ public class UserData implements UserDetails {
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
         return authorities;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserData(UserDto userData) {
+        username = userData.getName();
+        password = userData.getPassword();
     }
 }

@@ -15,13 +15,13 @@
     <table border="0">
         <tr>
             <td>Name:</td>
-            <td><input type="text" name="username" path="username"/></td>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <td><input type="text" data="username" path="username"/></td>
+            <input type="hidden" data="${_csrf.parameterName}" value="${_csrf.token}"/>
         </tr>
         <tr>
             <td>Password:</td>
-            <td><input type="password" name="password" path="password"/></td>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <td><input type="password" data="password" path="password"/></td>
+            <input type="hidden" data="${_csrf.parameterName}" value="${_csrf.token}"/>
         </tr>
         <tr>
             <td colspan="2" align="center">

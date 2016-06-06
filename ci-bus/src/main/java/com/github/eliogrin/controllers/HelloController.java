@@ -1,5 +1,6 @@
 package com.github.eliogrin.controllers;
 
+import com.github.eliogrin.controllers.core.WebController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/cars")
-public class HelloController {
+public class HelloController extends WebController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String printHello(@RequestParam(required = false) ModelMap model) {
