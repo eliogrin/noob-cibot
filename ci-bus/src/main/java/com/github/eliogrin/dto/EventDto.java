@@ -1,9 +1,12 @@
 package com.github.eliogrin.dto;
 
+import org.joda.time.DateTime;
+
 public class EventDto {
 
     private int id;
     private String data;
+    private DateTime timestamp;
 
     public String getBot() {
         return bot;
@@ -29,5 +32,13 @@ public class EventDto {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public DateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(DateTime timestamp) {
+        this.timestamp = timestamp;
     }
 }
