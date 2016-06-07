@@ -21,11 +21,13 @@ import java.util.Iterator;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rest")
 public class SkypeRestController extends ApiController {
 
     @Autowired
     private ModelFactory factory;
+
+    @Autowired
+    Gson gson;
 
     private Logger log = LoggerFactory.getLogger(SkypeRestController.class);
 
@@ -39,7 +41,7 @@ public class SkypeRestController extends ApiController {
 
     private List<EventDto> asDtoList(String botName, String stringData) {
         List<EventDto> events = new ArrayList<EventDto>();
-        Iterator<JsonElement> iterator = new Gson().fromJson(stringData, JsonArray.class).iterator();
+        Iterator<JsonElement> iterator = gson.fromJson(stringData, JsonArray.class).iterator();
         while (iterator.hasNext()) {
             EventDto eventDto = new EventDto();
             eventDto.setBot(botName);

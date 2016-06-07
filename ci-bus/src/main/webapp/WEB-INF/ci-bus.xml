@@ -22,4 +22,6 @@
         <constructor-arg name="user" value="root"/>
         <constructor-arg name="password" value=""/>
     </bean>
+
+    <bean id="gson" class="com.google.gson.Gson"/>
 </beans>
