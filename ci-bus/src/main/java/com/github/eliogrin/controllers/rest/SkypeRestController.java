@@ -8,6 +8,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,10 +26,12 @@ public class SkypeRestController extends ApiController {
     private ModelFactory factory;
 
     @RequestMapping(path = "/skype/{botId}", method = RequestMethod.POST, consumes = "application/json")
-    public void postEvent(@PathVariable String botId, HttpEntity<JsonArray> httpEntity) {
+    public ResponseEntity<Void> postEvent(@PathVariable String botId, HttpEntity<JsonArray> httpEntity) {
+        System.out.println(httpEntity.toString());
         EventsModel model = factory.getModel(EventsModel.class);
         model.data(asDtoList(botId, httpEntity.getBody()));
         model.save();
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
     private List<EventDto> asDtoList(String botName, JsonArray arrayData) {
