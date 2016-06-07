@@ -18,7 +18,8 @@
     <mvc:annotation-driven ignore-default-model-on-redirect="true"/>
 
     <bean id="dbConnector" class="com.github.eliogrin.DbConnector">
-        <constructor-arg name="connectionString" value="jdbc:mysql://127.0.0.1:3306/cibus"/>
+        <constructor-arg name="connectionString"
+                         value="jdbc:mysql://127.0.0.1:3306/cibus?useUnicode=true&amp;characterEncoding=utf-8"/>
         <constructor-arg name="user" value="root"/>
         <constructor-arg name="password" value=""/>
     </bean>
