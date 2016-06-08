@@ -30,6 +30,8 @@
 
     <!-- Authentication Providers for Form Login -->
     <authentication-manager alias="webAuthenticationManager">
-        <authentication-provider user-service-ref="webLoginService"/>
+        <authentication-provider user-service-ref="webLoginService">
+            <password-encoder hash="sha-256"/>
+        </authentication-provider>
     </authentication-manager>
 </beans:beans>
