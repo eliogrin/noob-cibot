@@ -18,10 +18,13 @@ import java.util.List;
 
 @Component
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class UserData implements UserDetails {
+public class ConsumerData implements UserDetails {
 
+    private int id = 0;
     private String username;
     private String password;
+    private String role;
+    private String key;
 
     public boolean isEnabled() {
         return true;
@@ -48,12 +51,19 @@ public class UserData implements UserDetails {
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(role));
         return authorities;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setUserData(UserDto userData) {
+        id = userData.getId();
         username = userData.getName();
         password = userData.getPassword();
+        role = userData.getRole();
+        key = userData.getHash();
     }
 }

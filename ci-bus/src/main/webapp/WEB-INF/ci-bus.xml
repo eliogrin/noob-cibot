@@ -32,6 +32,10 @@
         <property name="maximumAge" value="120"/>
     </bean>
 
+    <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+        <constructor-arg name="strength" value="256"/>
+    </bean>
+
     <task:scheduler id="workerScheduler"/>
     <task:scheduled-tasks scheduler="workerScheduler">
         <task:scheduled ref="cleanUpWorker" method="cleanOldEvents" cron="10 */2 * * * ?"/>

@@ -4,8 +4,7 @@
 <div class="header">
     <div class="header_menu">
         <a href="${pageContext.request.contextPath}/">Dashboard</a>
-        <a href="${pageContext.request.contextPath}/#">Agents</a>
-        <a href="${pageContext.request.contextPath}/#">Configuration</a>
+        <a href="${pageContext.request.contextPath}/agents">Agents</a>
     </div>
     <div class="userData">
         <span>Hello, ${username}!</span>

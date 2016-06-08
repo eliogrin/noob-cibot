@@ -7,16 +7,16 @@ public class EventDto {
     private int id;
     private String data;
     private DateTime timestamp;
+    private int bot;
 
-    public String getBot() {
+    public int getBot() {
         return bot;
     }
 
-    public void setBot(String bot) {
+    public void setBot(int bot) {
         this.bot = bot;
     }
 
-    private String bot;
 
     public int getId() {
         return id;

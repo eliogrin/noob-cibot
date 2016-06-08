@@ -12,10 +12,10 @@
 
 <ul>
     <core:forEach var="event" items="${events}">
-        <li>
-            <span>${event.id}</span>
-            <span>${event.bot}</span>
-            <span>${event.data}</span>
+        <li class="list-item">
+            <span class="list-item-title">${event.id}</span>
+            <span>bot ID ${event.bot}</span>
+            <div class="list-item-content">${event.data}</div>
         </li>
     </core:forEach>
 </ul>

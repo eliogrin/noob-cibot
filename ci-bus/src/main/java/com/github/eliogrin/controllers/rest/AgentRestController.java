@@ -1,5 +1,6 @@
 package com.github.eliogrin.controllers.rest;
 
+import com.github.eliogrin.ConsumerData;
 import com.github.eliogrin.controllers.core.ApiController;
 import com.github.eliogrin.dto.EventDto;
 import com.github.eliogrin.models.EventsModel;
@@ -10,7 +11,10 @@ import com.google.gson.JsonElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -23,10 +27,13 @@ public class AgentRestController extends ApiController {
     @Autowired
     private Gson gson;
 
-    @RequestMapping(path = "/agent/{botId}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<JsonArray> postEvent(@PathVariable String botId, @RequestParam int limit) {
+    @Autowired
+    private ConsumerData consumerData;
+
+    @RequestMapping(path = "/events", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<JsonArray> postEvent(@RequestParam(defaultValue = "5") int limit) {
         EventsModel events = factory.getModel(EventsModel.class);
-        events.load(botId, limit);
+        events.load(consumerData.getId(), limit);
         if (events.data().isEmpty()) {
             return new ResponseEntity<JsonArray>(HttpStatus.NO_CONTENT);
         }

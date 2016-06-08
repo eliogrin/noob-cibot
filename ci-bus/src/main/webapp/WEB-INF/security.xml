@@ -10,10 +10,11 @@
     <global-method-security pre-post-annotations="enabled"/>
 
     <!--Security for rest-->
-    <http pattern="/rest/**" security="none"/>
+    <!--<http pattern="/rest/skype**" security="none"/>-->
 
     <!--Security for Web-->
     <http pattern="/**" use-expressions="true" disable-url-rewriting="true">
+        <csrf disabled="true"/>
 
         <session-management invalid-session-url="/login">
             <!--<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" expired-url="/login?error"/>-->
@@ -25,6 +26,8 @@
 
         <logout logout-url="/logout" logout-success-url="/login" delete-cookies="JSESSIONID" invalidate-session="true"/>
         <intercept-url pattern="/login*" access="permitAll()"/>
+        <intercept-url pattern="/rest/skype**" access="permitAll()"/>
+        <intercept-url pattern="/rest/events*" access="hasRole('ROLE_AGENT')"/>
         <intercept-url pattern="/" access="hasRole('ROLE_ADMIN')"/>
     </http>
 

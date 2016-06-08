@@ -1,6 +1,6 @@
 package com.github.eliogrin.controllers.core;
 
-import com.github.eliogrin.UserData;
+import com.github.eliogrin.ConsumerData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public class WebController {
 
     @Autowired
-    private UserData user;
+    private ConsumerData user;
 
     @ModelAttribute("username")
     protected String getUsername() {

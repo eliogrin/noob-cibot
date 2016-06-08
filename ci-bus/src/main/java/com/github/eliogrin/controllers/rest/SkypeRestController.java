@@ -3,6 +3,7 @@ package com.github.eliogrin.controllers.rest;
 import com.github.eliogrin.controllers.core.ApiController;
 import com.github.eliogrin.dto.EventDto;
 import com.github.eliogrin.models.EventsModel;
+import com.github.eliogrin.models.ConsumerModel;
 import com.github.eliogrin.models.core.ModelFactory;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -25,21 +26,25 @@ public class SkypeRestController extends ApiController {
     @Autowired
     private ModelFactory factory;
 
-    @RequestMapping(path = "/skype/{botId}", method = RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<Void> postEvent(@PathVariable String botId, HttpEntity<JsonArray> httpEntity) {
-        System.out.println(httpEntity.toString());
-        EventsModel model = factory.getModel(EventsModel.class);
-        model.data(asDtoList(botId, httpEntity.getBody()));
-        model.save();
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+    @RequestMapping(path = "/skype/{botHash}", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<Void> postEvent(@PathVariable String botHash, HttpEntity<JsonArray> httpEntity) {
+        ConsumerModel consumerModel = factory.getModel(ConsumerModel.class);
+        consumerModel.load(botHash);
+        if (consumerModel.isLoaded()) {
+            EventsModel model = factory.getModel(EventsModel.class);
+            model.data(asDtoList(consumerModel.data().getId(), httpEntity.getBody()));
+            model.save();
+            return new ResponseEntity<Void>(HttpStatus.CREATED);
+        }
+        return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
     }
 
-    private List<EventDto> asDtoList(String botName, JsonArray arrayData) {
+    private List<EventDto> asDtoList(int botId, JsonArray arrayData) {
         List<EventDto> events = new ArrayList<EventDto>();
         Iterator<JsonElement> iterator = arrayData.iterator();
         while (iterator.hasNext()) {
             EventDto eventDto = new EventDto();
-            eventDto.setBot(botName);
+            eventDto.setBot(botId);
             eventDto.setData(iterator.next().toString());
             events.add(eventDto);
         }

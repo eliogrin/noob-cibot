@@ -34,7 +34,7 @@ public class EventsModel extends AbstractModel {
         events = connector().instance().createQuery(query).executeAndFetch(EventDto.class);
     }
 
-    public void load(String botId, int limit) {
+    public void load(int botId, int limit) {
         String query = String.format("SELECT * FROM events WHERE bot = '%s' LIMIT %d", botId, limit);
         events = connector().instance().createQuery(query).executeAndFetch(EventDto.class);
     }

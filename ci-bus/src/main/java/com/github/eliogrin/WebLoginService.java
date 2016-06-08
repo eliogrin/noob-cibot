@@ -1,6 +1,6 @@
 package com.github.eliogrin;
 
-import com.github.eliogrin.models.UserModel;
+import com.github.eliogrin.models.ConsumerModel;
 import com.github.eliogrin.models.core.ModelFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,13 +14,16 @@ public class WebLoginService implements UserDetailsService {
     ModelFactory factory;
 
     @Autowired
-    UserData userData;
+    ConsumerData consumerData;
 
-    public UserData loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserModel user = factory.getModel(UserModel.class);
+    public ConsumerData loadUserByUsername(String username) throws UsernameNotFoundException {
+        ConsumerModel user = factory.getModel(ConsumerModel.class);
         user.data().setName(username);
         user.load();
-        userData.setUserData(user.data());
-        return userData;
+        if (user.data().getId() == 0) {
+            throw new UsernameNotFoundException("Specified user not found.");
+        }
+        consumerData.setUserData(user.data());
+        return consumerData;
     }
 }
