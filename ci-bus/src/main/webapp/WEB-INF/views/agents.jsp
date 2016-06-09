@@ -21,7 +21,7 @@
             <div class="list-item-title">${agent.name}</div>
             <div class="list-item-content">
                 <span>URI</span>
-                <span>${baseURL}/skype/${agent.hash}</span>
+                <span>${baseURL}/rest/skype/${agent.hash}</span>
             </div>
             <div class="list-item-tools">
                 <span><a href="${pageContext.request.contextPath}/agents/${agent.id}">Edit</a></span>
