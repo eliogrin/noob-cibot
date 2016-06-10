@@ -13,7 +13,7 @@
     <!--<http pattern="/rest/skype**" security="none"/>-->
 
     <!--Security for Web-->
-    <http pattern="/**" use-expressions="true" disable-url-rewriting="true">
+    <http pattern="/**" use-expressions="true" disable-url-rewriting="true" create-session="never">
         <csrf disabled="true"/>
 
         <session-management invalid-session-url="/login">
@@ -21,13 +21,13 @@
         </session-management>
 
         <form-login login-page="/login" authentication-failure-url="/login?error"
-                    login-processing-url="/login" default-target-url="/" always-use-default-target="true"
+                    login-processing-url="/login" always-use-default-target="false"
                     username-parameter="username" password-parameter="password"/>
 
         <logout logout-url="/logout" logout-success-url="/login" delete-cookies="JSESSIONID" invalidate-session="true"/>
         <intercept-url pattern="/login*" access="permitAll()"/>
         <intercept-url pattern="/rest/skype**" access="permitAll()"/>
-        <intercept-url pattern="/rest/events*" access="hasRole('ROLE_AGENT')"/>
+        <intercept-url pattern="/rest/events**" access="hasRole('ROLE_AGENT')"/>
         <intercept-url pattern="/" access="hasRole('ROLE_ADMIN')"/>
     </http>
 

@@ -18,9 +18,16 @@
     <mvc:resources mapping="/css/**" location="/static/css/"/>
     <mvc:annotation-driven ignore-default-model-on-redirect="true"/>
 
-    <task:scheduled-tasks scheduler="myScheduler">
-        <task:scheduled ref="MyTask" method="doSmth" fixed-delay="1000"/>
-    </task:scheduled-tasks>
+    <bean id="eventsProvider" class="com.github.eliogrin.EventsProvider">
+        <constructor-arg name="endpoint" value="https://skype.elio.net.ua/cibus/"/>
+        <constructor-arg name="username" value="amber-bot"/>
+        <constructor-arg name="token" value="amber-bot"/>
+    </bean>
 
-    <task:scheduler id="myScheduler"/>
+    <bean id="eventsProcessor" class="com.github.eliogrin.workers.EventProcessor"/>
+
+    <task:scheduler id="defaultWorkersPool"/>
+    <task:scheduled-tasks scheduler="defaultWorkersPool">
+        <task:scheduled ref="eventsProcessor" method="processEvents" fixed-delay="5000"/>
+    </task:scheduled-tasks>
 </beans>
